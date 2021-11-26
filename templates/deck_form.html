@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+Create the Deck
+{% endblock %}
+{% block content %}
+<center>
+    <h5 class="display-3">Deck Create</h5>
+</center>
+<form action="/create/deck" method="post">
+    <div class="mb-3" style="margin-left: 30px;margin-top: 20px;">
+        <label for="Deck" class="form-label">Name of Deck</label>
+        <input required type="text" style="width: 1000px;" class="form-control" name="name" id="Deck" aria-describedby="Help">
+        <div class="form-text text-dark">Please enter the name of the deck</div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+{% endblock %}

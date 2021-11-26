@@ -1,0 +1,10 @@
+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
+
+
+echo "# FinalProject" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ariso-sac/FinalProject.git
+git push -u origin main

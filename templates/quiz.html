@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+Quiz
+{% endblock %}
+{% block content %}
+
+<script src="/static/quiz.js"></script>
+
+<center>
+    <h3 class="display-3">Quiz</h5>
+</center>
+<center>
+    <h6 class="display-3">DeckId - {{id}} || Name - {{name}}</h6>
+</center>
+<center>
+<div><span class="btn btn-sm btn-primary">Scores</span><span class="btn btn-sm btn-success" id="easy">0</span><span id="moderate" class="btn btn-sm btn-info">0</span><span class="btn btn-sm btn-danger" id="hard">0</span></div>
+<div><button class="btn btn-dark" onclick="score({{current_user.id}},{{id}})">Click To Save Your Scores</button></div>
+</center>
+
+<section class="py-5 text-center container">
+    <div class="row py-lg-5" style="border-width: 5px;border-style: dashed;">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <p class="display-6">Question No-</p>
+            <p id="num">0</p>
+            <p class="display-6">Question</p>
+            <h3 class="fw-white" id="Question">Question will Appear Here</h3>
+            <button class="btn btn-info" style="margin-bottom: 20px;" onclick="show({{id}})">Show Answer</button>
+            <p class="lead text-dark" id="Answer">
+                Answer will Appear Here
+            </p>
+            <button class="btn btn-warning" style="margin-bottom: 20px;" onclick="main({{id}})">Run</button>
+            <br />
+            <p>
+                <button class="btn btn-danger" onclick="easy()">Easy</button>
+                <button class="btn btn-primary" onclick="moderate()">Moderate</button>
+                <button class="btn btn-info" onclick="hard()">Difficult</button>
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

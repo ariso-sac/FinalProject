@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+Create the Cards
+{% endblock %}
+{% block content %}
+
+<script src="/static/card.js"></script>
+
+<center>
+    <h5 class="display-3">Card Creation Page</h5>
+</center>
+
+
+<form action="/cards" method="post">
+    <div class="mb-3" style="margin-left: 30px;margin-top: 20px;">
+        <label for="deckname" class="form-label">Name of Deck</label>
+        <select class="form-select" aria-label="Default select example" id="d" name="name">
+            <option value="volvo">Select</option>
+            {% for x in decks %}
+            <option value="{{x.id}}">{{x.name}}</option>
+            {% endfor %}
+        </select>
+        <div class="form-text text-dark">Please enter the name of the deck</div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+<div class="row">
+    {% for x in decks %}
+    {% if x.id == i %}
+    <center>
+        <h5 class="display-3">{{x.name}}</h5>
+    </center>
+    {% endif %}
+    {% endfor %}
+</div>
+<br />
+<br />
+
+<!-- Button trigger modal -->
+{% if b > 10 %}
+<button type="button" class="btn btn-danger position-fixed start-50" data-bs-toggle="modal" data-bs-target="#Create">
+    Add Cards
+</button>
+{% endif %}
+<br />
+<br />
+
+<!-- Modal -->
+<div class="modal fade" id="Create" tabindex="-1" aria-labelledby="CreateLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateLabel">Create</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3"> <label for="front" class="form-label">Front</label>
+                    <input required type="text" name="form-control" id="front">
+                </div>
+
+                <div class="mb-3"><label for="back" class="form-label">Back</label>
+                    <input required type="text" name="form-control" id="back">
+                </div>
+
+                <div class="mb-3"><label for="deck_id" class="form-label">Deck</label>
+                    <input required type="text" name="form-control" value="{{i}}" id="deck_id">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Crt()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    {% if b > 10 %}
+    <th>
+    <td>Front</td>
+    <td>Back</td>
+    <td>Deck_id</td>
+    <td colspan="2">Operations</td>
+    </th>
+    {% for x in cards %}
+    <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.front}}</td>
+        <td>{{x.back}}</td>
+        <td>{{x.deck_id}}</td>
+        <td></td>
+        <td><button onclick="Delete({{x.id}})" class="btn btn-success">Delete</button></td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}
